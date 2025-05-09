@@ -1,0 +1,28 @@
+{
+    "name": "Votol Programmer",
+    "private": true,
+    "scripts": {
+        "build": "tsc && vite build",
+        "generate-pwa-assets": "pwa-assets-generator",
+        "reinstall": "rm -rf node_modules package-lock.json && npm install",
+        "start": "vite",
+        "tunnel": "echo \"Your tunnel password: $(curl https://loca.lt/mytunnelpassword)\" && npx localtunnel -p 8080"
+    },
+    "type": "module",
+    "devDependencies": {
+        "@types/w3c-web-serial": "^1.0.8",
+        "@types/web-bluetooth": "^0.0.21",
+        "@vite-pwa/assets-generator": "^1.0.0",
+        "fudgel": "^1.6.1",
+        "rxjs": "^7.8.2",
+        "typescript": "^5.8.3",
+        "vite": "^6.3.5",
+        "vite-plugin-pwa": "^1.0.0",
+        "vite-plugin-simple-html": "^0.2.0",
+        "vite-plugin-version-mark": "^0.1.4"
+    },
+    "dependencies": {
+        "@literals/rollup-plugin-html-css-minifier": "^3.0.1",
+        "tsx": "^4.19.4"
+    }
+}
