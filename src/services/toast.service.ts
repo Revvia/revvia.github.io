@@ -1,4 +1,4 @@
-import { di } from '../di';
+import { di } from 'fudgel';
 import { html } from 'fudgel';
 import { I18nService } from '../i18n/i18n.service';
 

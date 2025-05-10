@@ -8,7 +8,6 @@
         "experimentalDecorators": true,
         "types": [
             "vite-plugin-pwa/client",
-            "@types/w3c-generic-sensor",
             "@types/w3c-web-serial",
         ],
 
