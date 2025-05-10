@@ -17,12 +17,13 @@ component(
             }
 
             header {
+                flex: none;
                 background-color: var(--active-background-color);
                 display: flex;
                 justify-content: space-between;
             }
 
-            app-router {
+            app-welcome, app-router {
                 flex-grow: 1;
                 flex-shrink: 1;
                 overflow: hidden;

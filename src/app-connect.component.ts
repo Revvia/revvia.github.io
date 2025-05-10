@@ -19,101 +19,118 @@ import { takeUntil } from 'rxjs/operators';
             clear: both;
         }
 
-        .option img {
+        .option i18n-img {
             max-width: 20%;
             max-height: 8em;
             float: right;
             margin: 0 0 0.5em 0.5em;
         }
+
+        .centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .state {
+            font-size: 2rem;
+        }
     `,
     template: html`
-        <p>Select the type of connection you want to use:</p>
+        <div *if="showConnect">
+            <p><i18n-label id="appConnect.selectConnection"></i18n-label></p>
 
-        <div class="option">
-            <img
-                src="/votol-bluetooth-serial.png"
-                alt="Bluetooth Serial Adapter"
-            />
+            <div class="option">
+                <i18n-img
+                    src="/votol-bluetooth-serial.png"
+                    alt="appConnect.bluetoothImageAlt"
+                ></i18n-img>
 
-            <button disabled="{{disableButtons}}" @click="connectBluetooth()">
-                Connect to Bluetooth Serial Port
-            </button>
+                <button @click="bluetoothConnect()">
+                    <i18n-label id="appConnect.bluetoothConnect"></i18n-label>
+                </button>
 
-            <ul>
-                <li>
-                    Requires the Bluetooth adapter, which can come in a black or
-                    a white case.
-                </li>
-                <li>Confirmed with EM200-2SP.</li>
-                <li>
-                    Should work with EM50-4, EM80GTSP (with CAN), EM100SP,
-                    EM150-2SP, EM260SP, SV120 (with CAN).
-                </li>
-            </ul>
+                <i18n-html id="appConnect.bluetoothDescriptionHtml"></i18n-html>
+            </div>
+            <div class="option">
+                <i18n-img
+                    src="/votol-usb-serial-can.png"
+                    alt="appConnect.serialImageAlt"
+                ></i18n-img>
+
+                <button @click="serialConnect()">
+                    <i18n-label id="appConnect.serialConnect"></i18n-label>
+                </button>
+
+                <i18n-html id="appConnect.serialDescriptionHtml"></i18n-html>
+            </div>
+            <div class="option">
+                <i18n-img
+                    src="/votol-usb-serial-black.png"
+                    alt="appConnect.oldBlackSerialImageAlt"
+                ></i18n-img>
+
+                <i18n-html
+                    id="appConnect.oldBlackSerialDescriptionHtml"
+                ></i18n-html>
+            </div>
+            <div class="option">
+                <i18n-img
+                    src="/votol-usb-serial-blue.png"
+                    alt="appConnect.oldBlueSerialImageAlt"
+                ></i18n-img>
+
+                <i18n-html
+                    id="appConnect.oldBlueSerialDescriptionHtml"
+                ></i18n-html>
+            </div>
         </div>
-        <div class="option">
-            <img
-                src="/votol-usb-serial-can.png"
-                alt="USB to Serial CAN Adapter"
-            />
-
-            <button disabled="{{disableButtons}}" @click="connectSerialCan()">
-                Connect to Serial Port (CAN)
-            </button>
-
-            <ul>
-                <li>
-                    Requires the USB to CAN adapter. It is blue with a band of
-                    black electrical tape.
-                </li>
-                <li>Confirmed with EM200-2SP.</li>
-                <li>
-                    Should work with EM50-4, EM80GTSP (with CAN), EM100SP,
-                    EM150-2SP, EM260SP, SV120 (with CAN).
-                </li>
-            </ul>
+        <div *if="bluetoothState !== BluetoothState.CLOSED" class="centered">
+            <div
+                *if="bluetoothState !== BluetoothState.RECONNECTING"
+                class="state"
+            >
+                <div>
+                    <i18n-label
+                        id="appConnect.bluetoothState.{{bluetoothState}}"
+                    ></i18n-label>
+                </div>
+                <button
+                    *if="bluetoothState === BluetoothState.CONNECTED"
+                    @click="bluetoothDisconnect()"
+                >
+                    Disconnect
+                </button>
+            </div>
         </div>
-        <div class="option">
-            <img
-                src="/votol-usb-serial-black.png"
-                alt="USB to Serial Adapter"
-            />
-            <p>
-                Unsupported controllers because they require the older serial
-                adapter that's coated in black tape - they could be added in the
-                future. This cable should support CAN.
-            </p>
-            <ul>
-                <li>
-                    EM50 (EM50S), EM100, EM100-4P, EM150 (EM150SP), EM200
-                    (EM200SP).
-                </li>
-            </ul>
-        </div>
-        <div class="option">
-            <img src="/votol-usb-serial-blue.png" alt="USB to Serial Adapter" />
-            <p>
-                Unsupported controllers that use the blue USB to serial adapter,
-                which does not support CAN bus. These could also be added in the
-                future.
-            </p>
-            <ul>
-                <li>
-                    EM25P, EM30SP, EM50SP LIN, EM50-4 (without CAN), EM50-6,
-                    EM80GTSP (without CAN), SV120 (without CAN).
-                </li>
-            </ul>
+        <div *if="serialState !== SerialState.CLOSED" class="centered">
+            <div class="state">
+                <div>
+                    <i18n-label
+                        id="appConnect.serialState.{{serialState}}"
+                    ></i18n-label>
+                </div>
+                <button
+                    *if="serialState === SerialState.CONNECTED"
+                    @click="serialDisconnect()"
+                >
+                    Disconnect
+                </button>
+            </div>
         </div>
     `,
 })
 export class AppConnectComponent {
-    disableButtons = false;
+    BluetoothState = BluetoothState;
+    bluetoothState: BluetoothState = BluetoothState.CLOSED;
+    SerialState = SerialState;
+    serialState: SerialState = SerialState.CLOSED;
+    showConnect = true;
     _bluetoothService = di(BluetoothService);
-    _bluetoothState: BluetoothState = BluetoothState.CLOSED;
     _logService = di(LogService);
     _messageService = di(MessageService);
     _serialService = di(SerialService);
-    _serialState: SerialState = SerialState.CLOSED;
     _terminationSubject = new Subject<void>();
 
     constructor() {
@@ -121,14 +138,14 @@ export class AppConnectComponent {
             .state()
             .pipe(takeUntil(this._terminationSubject))
             .subscribe((state) => {
-                this._bluetoothState = state;
+                this.bluetoothState = state;
                 this._updateButtons();
             });
         this._serialService
             .state()
             .pipe(takeUntil(this._terminationSubject))
             .subscribe((state) => {
-                this._serialState = state;
+                this.serialState = state;
                 this._updateButtons();
             });
     }
@@ -138,35 +155,45 @@ export class AppConnectComponent {
         this._terminationSubject.complete();
     }
 
-    async connectBluetooth() {
-        this.disableButtons = true;
+    async bluetoothConnect() {
+        this.showConnect = false;
 
         try {
             await this._bluetoothService.connect();
             this._logService.log('Connected to Bluetooth');
             this._messageService.open(this._bluetoothService);
         } catch (error) {
-            this.disableButtons = false;
+            this.showConnect = true;
             this._logService.log(`Failed to connect to Bluetooth: ${error}`);
         }
     }
 
-    async connectSerialCan() {
-        this.disableButtons = true;
+    bluetoothDisconnect() {
+        this._bluetoothService.disconnect();
+        this._logService.log('Manually disconnected from Bluetooth');
+    }
+
+    async serialConnect() {
+        this.showConnect = false;
 
         try {
             await this._serialService.connect();
             this._logService.log('Connected to serial port');
             this._messageService.open(this._bluetoothService);
         } catch (error) {
-            this.disableButtons = false;
+            this.showConnect = true;
             this._logService.log(`Failed to connect to serial port: ${error}`);
         }
     }
 
+    serialDisconnect() {
+        this._serialService.disconnect();
+        this._logService.log('Manually disconnected from serial port');
+    }
+
     _updateButtons() {
-        this.disableButtons =
-            this._bluetoothState !== BluetoothState.CLOSED ||
-            this._serialState !== SerialState.CLOSED;
+        this.showConnect =
+            this.bluetoothState === BluetoothState.CLOSED &&
+            this.serialState === SerialState.CLOSED;
     }
 }

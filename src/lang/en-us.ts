@@ -5,6 +5,74 @@ export const enUS: LanguageData = {
     // Application-related and global strings
     'app.title': 'Revvia',
 
+    // Connection page
+    'appConnect.bluetoothConnect': 'Connect to Bluetooth Serial Port',
+    'appConnect.bluetoothDescriptionHtml': html`
+        <ul>
+            <li>
+                Requires the Bluetooth adapter, which can come in a black or a
+                white case.
+            </li>
+            <li>Confirmed with EM200-2SP.</li>
+            <li>
+                Should work with EM50-4, EM80GTSP (with CAN), EM100SP,
+                EM150-2SP, EM260SP, SV120 (with CAN).
+            </li>
+        </ul>
+    `,
+    'appConnect.bluetoothState.CONNECTED': 'Bluetooth Connected',
+    'appConnect.bluetoothState.CONNECTING': 'Bluetooth Connecting ...',
+    'appConnect.bluetoothState.RECONNECTING': 'Bluetooth Reconnecting ...',
+    'appConnect.bluetoothState.PENDING': 'Bluetooth Request Pending ...',
+    'appConnect.bluetoothImageAlt': 'Bluetooth Serial Adapter',
+    'appConnect.oldBlackSerialDescriptionHtml': html`
+        <p>
+            Unsupported controllers because they require the older serial
+            adapter that's coated in black tape - they could be added in the
+            future. This cable should support CAN.
+        </p>
+        <ul>
+            <li>
+                EM50 (EM50S), EM100, EM100-4P, EM150 (EM150SP), EM200 (EM200SP).
+            </li>
+        </ul>
+    `,
+    'appConnect.oldBlackSerialImageAlt': 'USB to Serial Adapter (Black)',
+    'appConnect.oldBlueSerialDescriptionHtml': html`
+        <p>
+            Unsupported controllers that use the blue USB to serial adapter,
+            which does not support CAN bus. These could also be added in the
+            future.
+        </p>
+        <ul>
+            <li>
+                EM25P, EM30SP, EM50SP LIN, EM50-4 (without CAN), EM50-6,
+                EM80GTSP (without CAN), SV120 (without CAN).
+            </li>
+        </ul>
+    `,
+    'appConnect.oldBlueSerialImageAlt': 'USB to Serial Adapter (Blue)',
+    'appConnect.selectConnection':
+        'Select the type of connection you want to use:',
+    'appConnect.serialConnect': 'Connect to Serial Port (CAN)',
+    'appConnect.serialDescriptionHtml': html`
+        <ul>
+            <li>
+                Requires the USB to CAN adapter. It is blue with a band of black
+                electrical tape.
+            </li>
+            <li>Confirmed with EM200-2SP.</li>
+            <li>
+                Should work with EM50-4, EM80GTSP (with CAN), EM100SP,
+                EM150-2SP, EM260SP, SV120 (with CAN).
+            </li>
+        </ul>
+    `,
+    'appConnect.serialImageAlt': 'USB to CAN Adapter',
+    'appConnect.serialState.CONNECTED': 'Serial Connected',
+    'appConnect.serialState.OPEN': 'Serial Open ...',
+    'appConnect.serialState.PENDING': 'Serial Request Pending ...',
+
     // Color scheme
     'colorScheme.auto': 'System Colors',
     'colorScheme.dark': 'Dark Mode',
@@ -37,8 +105,7 @@ export const enUS: LanguageData = {
 
     // Welcome page
     'welcome.acceptTerms': 'I Agree To These Terms',
-    'welcome.browserSupported':
-        'Revvia appears to be supported on this browser.',
+    'welcome.browserSupported': 'Revvia supports this browser.',
     'welcome.browserUnsupported': 'Revvia is not supported on this browser.',
     'welcome.overviewHtml': html`
         <p>

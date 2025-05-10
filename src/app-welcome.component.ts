@@ -29,12 +29,14 @@ import { SessionStorageService, TERMS_ACCEPTED } from './services/session-storag
             display: flex;
             align-items: center;
             flex-direction: column;
+            flex: none;
+            margin: 0 1rem 1rem 1rem;
         }
 
         button {
             font: inherit;
             border-radius: 0.5rem;
-            margin: 0 1rem 1rem 1rem;
+            box-sizing: border-box;
         }
 
         .supported,
@@ -84,6 +86,7 @@ import { SessionStorageService, TERMS_ACCEPTED } from './services/session-storag
                 <i18n-label id="welcome.acceptTerms"></i18n-label>
             </button>
         </div>
+        <div></div>
     `,
 })
 export class AppWelcomeComponent {

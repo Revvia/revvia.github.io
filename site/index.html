@@ -2,11 +2,30 @@
 <html lang="en-US">
     <head>
         <meta charset="UTF-8" />
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/revvia.png" type="image/png">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-        <meta name="description" content="Web-based electric vehicle programmer for Votol controllers. Requires no installation, free, built-in help." />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/revvia.png" type="image/png" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no"
+        />
+        <meta
+            name="description"
+            content="Web-based electric vehicle programmer for Votol controllers. Requires no installation, free, built-in help."
+        />
         <title>Revvia</title>
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-ZMD7YRDVQM"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-ZMD7YRDVQM');
+        </script>
         <script src="main.ts" type="module"></script>
         <style>
             html {
@@ -54,6 +73,5 @@
             }
         </style>
     </head>
-    <body>
-    </body>
+    <body></body>
 </html>

@@ -36,6 +36,7 @@ export class SerialService implements MessageInterface {
         }
 
         this._state.next(SerialState.PENDING);
+
         try {
             this._logService.log('Requesting serial port');
             const port = await navigator.serial.requestPort();
@@ -67,8 +68,9 @@ export class SerialService implements MessageInterface {
             this._logService.log('Closing serial port');
             await this._port.close();
             this._port = null;
-            this._state.next(SerialState.CLOSED);
         }
+
+        this._state.next(SerialState.CLOSED);
     }
 
     ready() {
