@@ -16,13 +16,14 @@ export const enUS: LanguageData = {
             <a href="mailto:fidian@rumkin.com">through email</a>.
         </p>
     `,
+    'about.title': 'About',
 
     // Application-related and global strings
     'app.title': 'Revvia',
 
     // Connection page
-    'appConnect.bluetoothConnect': 'Connect to Bluetooth Serial Port',
-    'appConnect.bluetoothDescriptionHtml': html`
+    'connect.bluetoothConnect': 'Connect to Bluetooth Serial Port',
+    'connect.bluetoothDescriptionHtml': html`
         <ul>
             <li>
                 Requires the Bluetooth adapter, which can come in a black or a
@@ -34,12 +35,12 @@ export const enUS: LanguageData = {
             </li>
         </ul>
     `,
-    'appConnect.bluetoothState.CONNECTED': 'Bluetooth Connected',
-    'appConnect.bluetoothState.CONNECTING': 'Bluetooth Connecting ...',
-    'appConnect.bluetoothState.RECONNECTING': 'Bluetooth Reconnecting ...',
-    'appConnect.bluetoothState.PENDING': 'Bluetooth Request Pending ...',
-    'appConnect.bluetoothImageAlt': 'Bluetooth Serial Adapter',
-    'appConnect.oldBlackSerialDescriptionHtml': html`
+    'connect.bluetoothState.CONNECTED': 'Bluetooth Connected',
+    'connect.bluetoothState.CONNECTING': 'Bluetooth Connecting ...',
+    'connect.bluetoothState.RECONNECTING': 'Bluetooth Reconnecting ...',
+    'connect.bluetoothState.PENDING': 'Bluetooth Request Pending ...',
+    'connect.bluetoothImageAlt': 'Bluetooth Serial Adapter',
+    'connect.oldBlackSerialDescriptionHtml': html`
         <p>
             Unsupported controllers because they require the older serial
             adapter that's coated in black tape - they could be added in the
@@ -51,8 +52,8 @@ export const enUS: LanguageData = {
             </li>
         </ul>
     `,
-    'appConnect.oldBlackSerialImageAlt': 'USB to Serial Adapter (Black)',
-    'appConnect.oldBlueSerialDescriptionHtml': html`
+    'connect.oldBlackSerialImageAlt': 'USB to Serial Adapter (Black)',
+    'connect.oldBlueSerialDescriptionHtml': html`
         <p>
             Unsupported controllers that use the blue USB to serial adapter,
             which does not support CAN bus. These could also be added in the
@@ -65,11 +66,11 @@ export const enUS: LanguageData = {
             </li>
         </ul>
     `,
-    'appConnect.oldBlueSerialImageAlt': 'USB to Serial Adapter (Blue)',
-    'appConnect.selectConnection':
+    'connect.oldBlueSerialImageAlt': 'USB to Serial Adapter (Blue)',
+    'connect.selectConnection':
         'Select the type of connection you want to use:',
-    'appConnect.serialConnect': 'Connect to Serial Port (CAN)',
-    'appConnect.serialDescriptionHtml': html`
+    'connect.serialConnect': 'Connect to Serial Port (CAN)',
+    'connect.serialDescriptionHtml': html`
         <ul>
             <li>
                 Requires the USB to CAN adapter. It is blue with a band of black
@@ -82,10 +83,11 @@ export const enUS: LanguageData = {
             </li>
         </ul>
     `,
-    'appConnect.serialImageAlt': 'USB to CAN Adapter',
-    'appConnect.serialState.CONNECTED': 'Serial Connected',
-    'appConnect.serialState.OPEN': 'Serial Open ...',
-    'appConnect.serialState.PENDING': 'Serial Request Pending ...',
+    'connect.serialImageAlt': 'USB to CAN Adapter',
+    'connect.serialState.CONNECTED': 'Serial Connected',
+    'connect.serialState.OPEN': 'Serial Open ...',
+    'connect.serialState.PENDING': 'Serial Request Pending ...',
+    'connect.title': 'Connection',
 
     // Color scheme
     'colorScheme.auto': 'System Colors',
@@ -112,6 +114,10 @@ export const enUS: LanguageData = {
     'shared.permissionPrompt.grantPermission': 'Grant Permission',
     'shared.permissionPrompt.heading': 'Permission Required',
     'shared.prettyInput.close': 'Close Help',
+
+    // Settings
+    'settings.colorScheme': 'Toggle between light and dark mode. The system\'s color scheme is detected and used as the default, but can be overridden here.',
+    'settings.title': 'Settings',
 
     // Services
     'service.wakeLock.released': 'Letting Screen Turn Off',

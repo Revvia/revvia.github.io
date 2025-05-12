@@ -70,7 +70,6 @@ component(
         }
 
         toggle() {
-            console.log(controllerToElement(this));
             controllerToElement(this)?.classList.toggle('open');
         }
 

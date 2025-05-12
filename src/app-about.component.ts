@@ -9,5 +9,8 @@ component('app-about', {
             width: 100%;
         }
     `,
-    template: html` <i18n-html id="about.html" ></i18n-html> `,
+    template: html`
+        <page-title id="about.title"></page-title>
+        <i18n-html id="about.html"></i18n-html>
+    `,
 });

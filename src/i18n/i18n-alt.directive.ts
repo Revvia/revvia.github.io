@@ -7,7 +7,6 @@ export const i18nAlt = () => {
     addDirective(
         '#i18n-alt',
         (_controller: Controller, node: HTMLElement, attrValue: string) => {
-            console.log('attrValue', attrValue);
             setAttribute(node, 'alt', i18nService.get(attrValue));
         }
     );

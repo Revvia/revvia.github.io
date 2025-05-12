@@ -44,58 +44,59 @@ import { takeUntil } from 'rxjs/operators';
         }
     `,
     template: html`
+        <page-title id="connect.title"></page-title>
         <div *if="showConnect">
-            <p><i18n-label id="appConnect.selectConnection"></i18n-label></p>
+            <p><i18n-label id="connect.selectConnection"></i18n-label></p>
 
             <div class="option">
                 <img
                     src="/votol-bluetooth-serial.png"
-                    #i18n-alt="appConnect.bluetoothImageAlt"
+                    #i18n-alt="connect.bluetoothImageAlt"
                 ></img>
 
                 <div>
                 <button @click="bluetoothConnect()">
-                    <i18n-label id="appConnect.bluetoothConnect"></i18n-label>
+                    <i18n-label id="connect.bluetoothConnect"></i18n-label>
                 </button>
 
-                <i18n-html id="appConnect.bluetoothDescriptionHtml"></i18n-html>
+                <i18n-html id="connect.bluetoothDescriptionHtml"></i18n-html>
                 </div>
             </div>
             <div class="option">
                 <img
                     src="/votol-usb-serial-can.png"
-                    #i18n-alt="appConnect.serialImageAlt"
+                    #i18n-alt="connect.serialImageAlt"
                 ></img>
 
                 <div>
                 <button @click="serialConnect()">
-                    <i18n-label id="appConnect.serialConnect"></i18n-label>
+                    <i18n-label id="connect.serialConnect"></i18n-label>
                 </button>
 
-                <i18n-html id="appConnect.serialDescriptionHtml"></i18n-html>
+                <i18n-html id="connect.serialDescriptionHtml"></i18n-html>
                 </div>
             </div>
             <div class="option">
                 <img
                     src="/votol-usb-serial-black.png"
-                    #i18n-alt="appConnect.oldBlackSerialImageAlt"
+                    #i18n-alt="connect.oldBlackSerialImageAlt"
                 ></img>
 
                 <div>
                 <i18n-html
-                    id="appConnect.oldBlackSerialDescriptionHtml"
+                    id="connect.oldBlackSerialDescriptionHtml"
                 ></i18n-html>
                 </div>
             </div>
             <div class="option">
                 <img
                     src="/votol-usb-serial-blue.png"
-                    #i18n-alt="appConnect.oldBlueSerialImageAlt"
+                    #i18n-alt="connect.oldBlueSerialImageAlt"
                 ></img>
 
                 <div>
                 <i18n-html
-                    id="appConnect.oldBlueSerialDescriptionHtml"
+                    id="connect.oldBlueSerialDescriptionHtml"
                 ></i18n-html>
                 </div>
             </div>
@@ -107,7 +108,7 @@ import { takeUntil } from 'rxjs/operators';
             >
                 <div>
                     <i18n-label
-                        id="appConnect.bluetoothState.{{bluetoothState}}"
+                        id="connect.bluetoothState.{{bluetoothState}}"
                     ></i18n-label>
                 </div>
                 <button
@@ -122,7 +123,7 @@ import { takeUntil } from 'rxjs/operators';
             <div class="state">
                 <div>
                     <i18n-label
-                        id="appConnect.serialState.{{serialState}}"
+                        id="connect.serialState.{{serialState}}"
                     ></i18n-label>
                 </div>
                 <button

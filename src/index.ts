@@ -10,6 +10,7 @@ export * from './flyout-menu.component';
 export * from './i18n/i18n.module';
 export * from './menu-item.component';
 export * from './menu-items.component';
+export * from './page-title.component';
 export * from './pwa/pwa.module';
 export * from './shared/shared.module';
 
