@@ -3,6 +3,7 @@ import type { LanguageData } from '../i18n/languages';
 
 export const enUS: LanguageData = {
     // About page
+    'about.buildInformation': 'Build information:',
     'about.html': html`
         <p>
             Revvia is an open-source, web-based app for programming Votol
