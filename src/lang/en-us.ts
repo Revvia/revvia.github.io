@@ -28,10 +28,9 @@ export const enUS: LanguageData = {
                 Requires the Bluetooth adapter, which can come in a black or a
                 white case.
             </li>
-            <li>Confirmed with EM200-2SP.</li>
             <li>
                 Should work with EM50-4, EM80GTSP (with CAN), EM100SP,
-                EM150-2SP, EM260SP, SV120 (with CAN).
+                EM150-2SP, EM200-2SP, EM260SP, SV120 (with CAN).
             </li>
         </ul>
     `,
