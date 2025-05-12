@@ -1,4 +1,4 @@
-import { component, css, di, emit, html } from 'fudgel';
+import { component, css, di, html } from 'fudgel';
 import { LightDarkMode } from './datatypes/light-dark-mode';
 import { PreferenceService } from './services/preference.service';
 
