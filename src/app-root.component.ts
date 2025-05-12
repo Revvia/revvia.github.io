@@ -20,28 +20,72 @@ component(
                 flex: none;
                 background-color: var(--active-background-color);
                 display: flex;
-                justify-content: space-between;
+                justify-content: center;
+                align-items: center;
             }
 
-            app-welcome, app-router {
+            .title {
+                font-size: 1.6em;
+            }
+
+            color-scheme {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            app-welcome {
                 flex-grow: 1;
                 flex-shrink: 1;
                 overflow: hidden;
             }
+
+            .content {
+                flex: 1;
+                overflow: hidden;
+                display: flex;
+                width: 100%;
+            }
+
+            .menu {
+                width: var(--menu-width);
+                flex: none;
+            }
+
+            @media (max-width: 600px) {
+                .extended {
+                    display: none;
+                }
+
+                .menu {
+                    display: none;
+                }
+            }
+
+            app-router {
+                flex-grow: 1;
+            }
         `,
         template: html`
             <header>
-                <span title="{{hover}}"
-                    >Revvia - Votol Controller Programmer</span
+                <span class="title" title="{{hover}}"
+                    >Revvia<span class="extended">
+                        - Votol Controller Programmer</span
+                    ></span
                 >
-
                 <color-scheme></color-scheme>
             </header>
             <app-welcome *if="!termsAccepted"></app-welcome>
-            <app-router *if="termsAccepted">
-                <div path="/connect" component="app-connect"></div>
-                <div path="**" component="app-redirect"></div>
-            </app-router>
+            <div class="content" *if="termsAccepted">
+                <menu-items class="menu"></menu-items>
+                <app-router>
+                    <div path="/about" component="app-about"></div>
+                    <div path="/connect" component="app-connect"></div>
+                    <div path="/settings" component="app-settings"></div>
+                    <div path="**" component="app-redirect"></div>
+                </app-router>
+            </div>
+            <flyout-menu></flyout-menu>
         `,
     },
     class {

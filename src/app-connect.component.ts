@@ -9,21 +9,27 @@ import { takeUntil } from 'rxjs/operators';
 @Component('app-connect', {
     style: css`
         :host {
+            box-sizing: border-box;
             display: block;
-            max-height: 100%;
             height: 100%;
+            max-height: 100%;
             overflow: auto;
+            padding: 0.5em;
         }
 
         .option {
-            clear: both;
+            display: flex;
+            gap: 1em;
+            margin-bottom: 1em;
         }
 
-        .option i18n-img {
+        .option img {
             max-width: 20%;
-            max-height: 8em;
-            float: right;
-            margin: 0 0 0.5em 0.5em;
+            width: 8em;
+            overflow: hidden;
+            box-sizing: border-box;
+            object-fit: contain;
+            flex: none;
         }
 
         .centered {
@@ -42,48 +48,56 @@ import { takeUntil } from 'rxjs/operators';
             <p><i18n-label id="appConnect.selectConnection"></i18n-label></p>
 
             <div class="option">
-                <i18n-img
+                <img
                     src="/votol-bluetooth-serial.png"
-                    alt="appConnect.bluetoothImageAlt"
-                ></i18n-img>
+                    #i18n-alt="appConnect.bluetoothImageAlt"
+                ></img>
 
+                <div>
                 <button @click="bluetoothConnect()">
                     <i18n-label id="appConnect.bluetoothConnect"></i18n-label>
                 </button>
 
                 <i18n-html id="appConnect.bluetoothDescriptionHtml"></i18n-html>
+                </div>
             </div>
             <div class="option">
-                <i18n-img
+                <img
                     src="/votol-usb-serial-can.png"
-                    alt="appConnect.serialImageAlt"
-                ></i18n-img>
+                    #i18n-alt="appConnect.serialImageAlt"
+                ></img>
 
+                <div>
                 <button @click="serialConnect()">
                     <i18n-label id="appConnect.serialConnect"></i18n-label>
                 </button>
 
                 <i18n-html id="appConnect.serialDescriptionHtml"></i18n-html>
+                </div>
             </div>
             <div class="option">
-                <i18n-img
+                <img
                     src="/votol-usb-serial-black.png"
-                    alt="appConnect.oldBlackSerialImageAlt"
-                ></i18n-img>
+                    #i18n-alt="appConnect.oldBlackSerialImageAlt"
+                ></img>
 
+                <div>
                 <i18n-html
                     id="appConnect.oldBlackSerialDescriptionHtml"
                 ></i18n-html>
+                </div>
             </div>
             <div class="option">
-                <i18n-img
+                <img
                     src="/votol-usb-serial-blue.png"
-                    alt="appConnect.oldBlueSerialImageAlt"
-                ></i18n-img>
+                    #i18n-alt="appConnect.oldBlueSerialImageAlt"
+                ></img>
 
+                <div>
                 <i18n-html
                     id="appConnect.oldBlueSerialDescriptionHtml"
                 ></i18n-html>
+                </div>
             </div>
         </div>
         <div *if="bluetoothState !== BluetoothState.CLOSED" class="centered">

@@ -1,10 +1,11 @@
 import { di } from 'fudgel';
-import { I18nService } from './i18n/i18n.module';
+import { i18nAlt, I18nService } from './i18n/i18n.module';
 import { InstallPwaService, UpdatePwaService } from './pwa/pwa.module';
 import { LightDarkMode } from './datatypes/light-dark-mode';
 import { PreferenceService } from './services/preference.service';
 
 export const bootstrap = () => {
+    i18nAlt();
     const lightDarkMode = di(PreferenceService).lightDarkMode.getItem();
 
     if (lightDarkMode === LightDarkMode.DARK) {

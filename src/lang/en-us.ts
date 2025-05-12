@@ -2,6 +2,21 @@ import { html } from 'fudgel';
 import type { LanguageData } from '../i18n/languages';
 
 export const enUS: LanguageData = {
+    // About page
+    'about.html': html`
+        <p>
+            Revvia is an open-source, web-based app for programming Votol
+            controllers.
+        </p>
+        <p>
+            Have a suggestion, bug report, or other way that this software can
+            be better? Go to the project page on
+            <a href="https://github.com/fidian/revvia/">GitHub</a> and create an
+            issue. You can also contact the author directly
+            <a href="mailto:fidian@rumkin.com">through email</a>.
+        </p>
+    `,
+
     // Application-related and global strings
     'app.title': 'Revvia',
 
@@ -82,6 +97,11 @@ export const enUS: LanguageData = {
     'installPwa.action': 'Install',
     'installPwa.message': 'Install to Home Screen',
 
+    // Menu - Navigation between pages
+    'menu.about': 'About',
+    'menu.connect': 'Connection',
+    'menu.settings': 'Settings',
+
     // Shared components
     'shared.permissionDenied.heading': 'Denied or Unavailable',
     'shared.permissionDenied.message':
@@ -115,8 +135,10 @@ export const enUS: LanguageData = {
         </p>
 
         <p>
-            To use this, you must have Web Serial API support in your browser.
-            Chrome, Edge, and Chromium-based browsers are required.
+            To use this, you must have Web Serial API or Web Bluetooth API
+            support in your browser. Chrome, Edge, and Chromium-based browsers
+            are required. You will also need an adapter cable or a Bluetooth
+            adapter for communication to the controller.
         </p>
     `,
     'welcome.pleaseHelpHtml': html`
