@@ -7,7 +7,9 @@ export const enUS: LanguageData = {
     'about.html': html`
         <p>
             Revvia is an open-source, web-based app for programming Votol
-            controllers.
+            controllers. Built as a Progressive Web App (PWA), it can used with
+            or without installing as a standalone app. Once loaded, it works
+            offline as well.
         </p>
         <p>
             Have a suggestion, bug report, or other way that this software can
@@ -117,7 +119,8 @@ export const enUS: LanguageData = {
     'shared.prettyInput.close': 'Close Help',
 
     // Settings
-    'settings.colorScheme': 'Toggle between light and dark mode. The system\'s color scheme is detected and used as the default, but can be overridden here.',
+    'settings.colorScheme':
+        "Toggle between light and dark mode. The system's color scheme is detected and used as the default, but can be overridden here.",
     'settings.title': 'Settings',
 
     // Services
@@ -137,7 +140,8 @@ export const enUS: LanguageData = {
         <p>
             This is a web-based Votol controller programmer. It's not sponsored
             nor endorsed by Votol. It's able to program Votol ES200-2SP and
-            other CAN bus controllers.
+            other CAN bus controllers. Built as a Progressive Web App (PWA), it
+            can be installed on your computer or mobile device.
         </p>
 
         <p>
