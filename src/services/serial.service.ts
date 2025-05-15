@@ -20,14 +20,18 @@ export class SerialService implements MessageInterface {
     private _writer: WritableStreamDefaultWriter<Uint8Array> | null = null;
 
     constructor() {
-        navigator.serial.addEventListener('connect', () => {
-            this._logService.log('Serial port connected');
-            this._state.next(SerialState.CONNECTED);
-        });
-        navigator.serial.addEventListener('disconnect', () => {
-            this._logService.log('Serial port disconnected');
-            this._state.next(SerialState.OPEN);
-        });
+        if (this.supported()) {
+            navigator.serial.addEventListener('connect', () => {
+                this._logService.log('Serial port connected');
+                this._state.next(SerialState.CONNECTED);
+            });
+            navigator.serial.addEventListener('disconnect', () => {
+                this._logService.log('Serial port disconnected');
+                this._state.next(SerialState.OPEN);
+            });
+        } else {
+            this._logService.log('Serial not supported');
+        }
     }
 
     async connect() {
@@ -95,6 +99,10 @@ export class SerialService implements MessageInterface {
 
     state() {
         return this._state.asObservable();
+    }
+
+    supported() {
+        return 'serial' in navigator;
     }
 
     async _send(data: Uint8Array) {

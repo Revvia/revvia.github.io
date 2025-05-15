@@ -52,103 +52,103 @@ import { takeUntil } from 'rxjs/operators';
                 <img
                     src="/votol-bluetooth-serial.png"
                     #i18n-alt="connect.bluetoothImageAlt"
-                ></img>
+                />
 
                 <div>
-                <button @click="bluetoothConnect()">
-                    <i18n-label id="connect.bluetoothConnect"></i18n-label>
-                </button>
+                    <button @click="bluetoothConnect()">
+                        <i18n-label id="connect.bluetoothConnect"></i18n-label>
+                    </button>
 
-                <i18n-html id="connect.bluetoothDescriptionHtml"></i18n-html>
+                    <div class="unsupported" *if="!bluetoothSupported">
+                        <i18n-label
+                            id="connect.bluetoothUnsupported"
+                        ></i18n-label>
+                    </div>
+
+                    <i18n-html
+                        id="connect.bluetoothDescriptionHtml"
+                    ></i18n-html>
                 </div>
             </div>
             <div class="option">
                 <img
                     src="/votol-usb-serial-can.png"
                     #i18n-alt="connect.serialImageAlt"
-                ></img>
+                />
 
                 <div>
-                <button @click="serialConnect()">
-                    <i18n-label id="connect.serialConnect"></i18n-label>
-                </button>
+                    <button *if="serialSupported" @click="serialConnect()">
+                        <i18n-label id="connect.serialConnect"></i18n-label>
+                    </button>
 
-                <i18n-html id="connect.serialDescriptionHtml"></i18n-html>
+                    <div class="unsupported" *if="!serialSupported">
+                        <i18n-label id="connect.serialUnsupported"></i18n-label>
+                    </div>
+
+                    <i18n-html id="connect.serialDescriptionHtml"></i18n-html>
                 </div>
             </div>
             <div class="option">
                 <img
                     src="/votol-usb-serial-black.png"
                     #i18n-alt="connect.oldBlackSerialImageAlt"
-                ></img>
+                />
 
                 <div>
-                <i18n-html
-                    id="connect.oldBlackSerialDescriptionHtml"
-                ></i18n-html>
+                    <i18n-html
+                        id="connect.oldBlackSerialDescriptionHtml"
+                    ></i18n-html>
                 </div>
             </div>
             <div class="option">
                 <img
                     src="/votol-usb-serial-blue.png"
                     #i18n-alt="connect.oldBlueSerialImageAlt"
-                ></img>
+                />
 
                 <div>
-                <i18n-html
-                    id="connect.oldBlueSerialDescriptionHtml"
-                ></i18n-html>
+                    <i18n-html
+                        id="connect.oldBlueSerialDescriptionHtml"
+                    ></i18n-html>
                 </div>
             </div>
         </div>
         <div *if="bluetoothState !== BluetoothState.CLOSED" class="centered">
-            <div
-                *if="bluetoothState !== BluetoothState.RECONNECTING"
+            <i18n-label
                 class="state"
-            >
-                <div>
-                    <i18n-label
-                        id="connect.bluetoothState.{{bluetoothState}}"
-                    ></i18n-label>
-                </div>
-                <button
-                    *if="bluetoothState === BluetoothState.CONNECTED"
-                    @click="bluetoothDisconnect()"
-                >
-                    Disconnect
-                </button>
-            </div>
+                id="connect.bluetoothState.{{bluetoothState}}"
+            ></i18n-label>
+            <connection-operations
+                *if="bluetoothState === BluetoothState.CONNECTED"
+            ></connection-operations>
         </div>
         <div *if="serialState !== SerialState.CLOSED" class="centered">
-            <div class="state">
-                <div>
-                    <i18n-label
-                        id="connect.serialState.{{serialState}}"
-                    ></i18n-label>
-                </div>
-                <button
-                    *if="serialState === SerialState.CONNECTED"
-                    @click="serialDisconnect()"
-                >
-                    Disconnect
-                </button>
-            </div>
+            <i18n-label
+                class="state"
+                id="connect.serialState.{{serialState}}"
+            ></i18n-label>
+            <connection-operations
+                *if="serialState === SerialState.CONNECTED"
+            ></connection-operations>
         </div>
     `,
 })
 export class AppConnectComponent {
     BluetoothState = BluetoothState;
-    bluetoothState: BluetoothState = BluetoothState.CLOSED;
+    bluetoothState = BluetoothState.CLOSED;
+    bluetoothSupported = false;
     SerialState = SerialState;
-    serialState: SerialState = SerialState.CLOSED;
+    serialState = SerialState.CLOSED;
+    serialSupported = false;
     showConnect = true;
-    _bluetoothService = di(BluetoothService);
-    _logService = di(LogService);
-    _messageService = di(MessageService);
-    _serialService = di(SerialService);
-    _terminationSubject = new Subject<void>();
+    private readonly _bluetoothService = di(BluetoothService);
+    private readonly _logService = di(LogService);
+    private readonly _messageService = di(MessageService);
+    private readonly _serialService = di(SerialService);
+    private readonly _terminationSubject = new Subject<void>();
 
     constructor() {
+        this.bluetoothSupported = this._bluetoothService.supported();
         this._bluetoothService
             .state()
             .pipe(takeUntil(this._terminationSubject))
@@ -156,6 +156,7 @@ export class AppConnectComponent {
                 this.bluetoothState = state;
                 this._updateButtons();
             });
+        this.serialSupported = this._serialService.supported();
         this._serialService
             .state()
             .pipe(takeUntil(this._terminationSubject))

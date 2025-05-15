@@ -1,5 +1,10 @@
+import { BluetoothService } from './services/bluetooth.service';
 import { Component, css, di, html } from 'fudgel';
-import { SessionStorageService, TERMS_ACCEPTED } from './services/session-storage.service';
+import {
+    SessionStorageService,
+    TERMS_ACCEPTED,
+} from './services/session-storage.service';
+import { SerialService } from './services/serial.service';
 
 @Component('app-welcome', {
     style: css`
@@ -93,17 +98,13 @@ export class AppWelcomeComponent {
     supported = false;
     supportsBluetooth = false;
     supportsSerial = false;
+    private readonly _bluetoothService = di(BluetoothService);
+    private readonly _serialService = di(SerialService);
     private readonly _sessionStorageService = di(SessionStorageService);
 
     constructor() {
-        if ('bluetooth' in navigator) {
-            this.supportsBluetooth = true;
-        }
-
-        if ('serial' in navigator) {
-            this.supportsSerial = true;
-        }
-
+        this.supportsBluetooth = this._bluetoothService.supported();
+        this.supportsSerial = this._serialService.supported();
         this.supported = this.supportsBluetooth || this.supportsSerial;
     }
 

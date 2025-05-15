@@ -38,16 +38,18 @@ export const enUS: LanguageData = {
             </li>
         </ul>
     `,
+    'connect.bluetoothImageAlt': 'Bluetooth Serial Adapter',
     'connect.bluetoothState.CONNECTED': 'Bluetooth Connected',
     'connect.bluetoothState.CONNECTING': 'Bluetooth Connecting ...',
     'connect.bluetoothState.RECONNECTING': 'Bluetooth Reconnecting ...',
     'connect.bluetoothState.PENDING': 'Bluetooth Request Pending ...',
-    'connect.bluetoothImageAlt': 'Bluetooth Serial Adapter',
+    'connect.bluetoothUnsupported': 'Unsupported',
     'connect.oldBlackSerialDescriptionHtml': html`
         <p>
             Unsupported controllers because they require the older serial
-            adapter that's coated in black tape - they could be added in the
-            future. This cable should support CAN.
+            adapter that's coated in black tape. Support for this cable could be
+            added in the future, or it might work right now as-is. This cable
+            should support CAN.
         </p>
         <ul>
             <li>
@@ -76,8 +78,8 @@ export const enUS: LanguageData = {
     'connect.serialDescriptionHtml': html`
         <ul>
             <li>
-                Requires the USB to CAN adapter. It is blue with a band of black
-                electrical tape.
+                Requires the USB to CAN adapter. It is translucent blue with a
+                band of black electrical tape.
             </li>
             <li>Confirmed with EM200-2SP.</li>
             <li>
@@ -90,6 +92,7 @@ export const enUS: LanguageData = {
     'connect.serialState.CONNECTED': 'Serial Connected',
     'connect.serialState.OPEN': 'Serial Open ...',
     'connect.serialState.PENDING': 'Serial Request Pending ...',
+    'connect.serialUnsupported': 'Unsupported',
     'connect.title': 'Connection',
 
     // Color scheme

@@ -10,13 +10,14 @@ component(
                 box-sizing: border-box;
                 display: block;
                 padding: 0.25em;
+                user-select: none;
             }
 
             a {
-                display: block;
-                padding: 0.25em 0.5em;
-                font-size: 1.2em;
                 border-radius: 0.5em;
+                display: block;
+                font-size: 1.2em;
+                padding: 0.25em 0.5em;
             }
 
             a:hover {

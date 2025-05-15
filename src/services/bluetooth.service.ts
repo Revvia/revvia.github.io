@@ -22,6 +22,13 @@ export class BluetoothService implements MessageInterface {
     private _sendPromise = Promise.resolve();
     private _state = new BehaviorSubject(BluetoothState.CLOSED);
 
+    constructor() {
+        if (!this.supported()) {
+            this._logService.log('Bluetooth not supported');
+            return;
+        }
+    }
+
     async connect() {
         if (this._device || this._state.getValue() !== BluetoothState.CLOSED) {
             throw new Error('REV_5970 Already using a Bluetooth device');
@@ -89,6 +96,10 @@ export class BluetoothService implements MessageInterface {
 
     state() {
         return this._state.asObservable();
+    }
+
+    supported() {
+        return 'bluetooth' in navigator;
     }
 
     async _connectToDevice() {

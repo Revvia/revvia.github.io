@@ -1,13 +1,8 @@
-import { Component, css, di, html } from 'fudgel';
+import { Component, di, html } from 'fudgel';
 import { I18nService } from './i18n.service';
 
 @Component('i18n-label', {
     attr: ['id', 'ws'],
-    style: css`
-        :host {
-            user-select: none;
-        }
-    `,
     // Spaces are necessary because vite/esbuild removes them
     template: html`{{ws}}{{value}}{{ws}}`,
 })
